@@ -12,7 +12,7 @@ class Solution{
             while(!st.isEmpty() && st.peek()< A[i]){
                 int x = st.pop();
             }
-            if(!st.isEmpty){
+            if(!st.isEmpty()){
                 ans[i] = x;
             }
             else{
