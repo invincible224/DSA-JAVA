@@ -16,7 +16,7 @@ public class LargestRectangleinHistogram {
         }
     }
 
-    // Better ----------------
+    // Better -----------------------------------------
     class Solution2 {
         public int largestRectangleArea(int[] heights) {
             int n = heights.length;
