@@ -88,4 +88,46 @@ public class LargestRectangleinHistogram {
         }
     }
 
+    // -----------------Optimal solution
+
+    class Solution3 {
+        public int largestRectangleArea(int[] heights) {
+            int n = heights.length; // Number of bars in the histogram
+            Stack<Integer> st = new Stack<>(); // Stack to store indices of histogram bars
+            int maxArea = 0; // Variable to track the maximum rectangular area
+
+            // Traverse each bar in the histogram
+            for (int i = 0; i < n; i++) {
+                // Process elements that are greater than the current bar (ensuring a
+                // non-decreasing stack)
+                while (!st.isEmpty() && heights[st.peek()] > heights[i]) {
+                    int element = st.pop(); // Pop the top element (index of the bar)
+                    int nse = i; // Next Smaller Element (NSE) is the current index
+                    int pse = st.isEmpty() ? -1 : st.peek(); // Previous Smaller Element (PSE)
+
+                    // Calculate area with heights[element] as the smallest height
+                    int width = nse - pse - 1;
+                    int area = heights[element] * width;
+                    maxArea = Math.max(maxArea, area);
+                }
+                // Push the current index into the stack
+                st.push(i);
+            }
+
+            // Process remaining elements in the stack
+            while (!st.isEmpty()) {
+                int element = st.pop(); // Pop the top element
+                int nse = n; // If there's no smaller element to the right, NSE is the end of the array
+                int pse = st.isEmpty() ? -1 : st.peek(); // Previous smaller element
+
+                // Calculate area with heights[element] as the smallest height
+                int width = nse - pse - 1;
+                int area = heights[element] * width;
+                maxArea = Math.max(maxArea, area);
+            }
+
+            return maxArea; // Return the maximum rectangle area found
+        }
+    }
+
 }

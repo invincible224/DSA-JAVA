@@ -2,7 +2,7 @@ package Math1;
 
 public class Reverse {
 
-    public int reverse(int x) {
+    public static int reverse(int x) {
         int rev = 0;
 
         while (x != 0) {
@@ -19,4 +19,8 @@ public class Reverse {
         return rev;
     }
 
+    public static void main(String[] args) {
+        int a = reverse(123);
+        System.out.println(a);
+    }
 }
